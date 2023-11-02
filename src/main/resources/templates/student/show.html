@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="fr-FR" xmlns:th="http://www.thymeleaf.org/ ">
+<head>
+  <meta charset="UTF-8">
+  <title>La Liste d'étudiant</title>
+  <span th:replace="~{shared/import-css :: importCSS}"></span>
+</head>
+
+<body class="container-fluid w-100 h-100">
+  <span th:replace="~{shared/navbar :: navbar}"></span>
+
+  <div class="container w-75 p-4 justify-content-center">
+
+    <span th:if="${students == null}">
+      <h3 class="text-center">
+        Oups, aucun étudiant n'a été trouvé
+      </h3>
+    </span>
+
+    <span th:if="${students != null}">
+      <table class="table">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Nom</th>
+          <th scope="col">Prénom</th>
+          <th scope="col">Age</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+          <tr th:each="student: ${students}">
+
+              <th scope="row" th:text="${student.id}"></th>
+              <td th:text="${student.firstname}"></td>
+              <td th:text="${student.lastname}"></td>
+              <td th:text="${student.age}"></td>
+              <td>
+                <form th:action="@{/update}" th:object="${student}" method="post">
+                  <input type="number" id="id" />
+                  <button class="btn btn-info mx-4 px-2" type="submit"> Modifier </button>
+                </form>
+              </td>
+            <td>
+              <form th:action="@{/delete}"  method="post">
+                <button class="btn btn-warning mx-4 px-2" type="submit"> Supprimer </button>
+              </form>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </span>
+
+  </div>
+
+  <span th:replace="~{shared/footer :: footer}"></span>
+</body>
+</html>

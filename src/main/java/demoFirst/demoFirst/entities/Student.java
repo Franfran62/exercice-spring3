@@ -6,23 +6,30 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
+@Setter
+@NoArgsConstructor
 public class Student {
 
-    private static int count;
+    private int id;
+    private String firstname;
+    private String lastname;
+    private int age;
 
-    private final int id;
-    @Setter private String firstname;
-    @Setter private String lastname;
-    @Setter private int age;
 
-    {
-        ++count;
-    }
-    public Student(String firstname, String lastname, int age)
-    {
-        this.id = count;
+    public Student(String firstname, String lastname, int age) {
+
+        this.id = id;
         this.firstname = firstname;
         this.lastname = lastname;
         this.age = age;
+    }
+    @Override
+    public String toString() {
+        return "Student{" +
+                "id=" + id +
+                ", firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", age=" + age +
+                '}';
     }
 }

@@ -11,12 +11,17 @@ import java.util.List;
 public class StudentService {
 
     private Student student;
+
+    private static int count;
+
     private final ArrayList<Student> database = new ArrayList<>();
 
     public Student createStudent(Student student){
         if (student == null) {
             return null;
         }
+        ++count;
+        student.setId(count);
         this.student = student;
         database.add(student);
 
@@ -24,7 +29,8 @@ public class StudentService {
     }
 
     public List<Student> getAllStudents() {
-        return database;
+
+        return this.database.isEmpty() ? null : this.database;
     }
 
     public Student getStudent(int id) {

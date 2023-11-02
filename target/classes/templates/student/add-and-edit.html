@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr-FR" xmlns:th="http://www.thymeleaf.org/ ">
+<head>
+  <meta charset="UTF-8">
+  <title>Mon projet étudiant</title>
+  <span th:replace="~{shared/import-css :: importCSS}"></span>
+</head>
+<body class="container-fluid w-100 h-100">
+  <span th:replace="~{shared/navbar :: navbar}"></span>
+
+  <div class="container d-flex p-4 m-4 justify-content-center">
+    <div class="col-lg-6">
+
+      <form th:action="@{/submit}" th:object="${student}" method="post">
+        <div class="row form-row m-2 p-2">
+          <label class="form-label" for="firstname"> Votre prénom </label>
+          <input class="form-control" id ="firstname" th:field="*{firstname}" type="text" placeholder="François" required>
+        </div>
+
+        <div class="row form-row m-2 p-2">
+          <label class="form-label" for="lastname"> Votre nom </label>
+          <input class="form-control" id="lastname" th:field="*{lastname}" type="text" placeholder="Kukla" required>
+        </div>
+
+        <div class="row form-row m-2 p-2">
+          <label class="form-label" for="age"> Votre age </label>
+          <input class="form-control" id="age" th:field="*{age}" type="number" placeholder="28" required>
+        </div>
+
+        <div class=" d-flex justify-content-end">
+          <button class="btn btn-success mx-4 px-2" type="submit"> Valider </button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+
+  <span th:replace="~{shared/footer :: footer}"></span>
+</body>
+</html>
